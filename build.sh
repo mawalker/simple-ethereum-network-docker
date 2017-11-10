@@ -1,9 +1,12 @@
 #!/bin/bash
 ###############################################################################
 #
-# This Scipt builds the Dockerfile for 'RighteousCoder/openJDK-8'
+# This Scipt builds the Dockerfile for 'righteouscoder/geth-simple-network'
 #
 # It logs the start and stop time and stdout & stderr into log.txt
+#
+# @Author   Michael A. Walker
+# @Date     2017-11-10
 #
 ###############################################################################
 
