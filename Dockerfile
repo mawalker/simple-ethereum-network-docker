@@ -40,7 +40,7 @@ RUN apt-get install -y --no-install-recommends software-properties-common
 # Install some commons software to help with scripts, etc.
 # These are all likely to be very small and helpful
 ##############################################################################
-RUN apt-get install -y zip unzip less wget curl
+RUN apt-get install -y zip unzip less wget curl dtach nano vim
 
 RUN mkdir -p /workspace/ethereum/
 RUN mkdir -p /workspace/geth/ && cd /workspace/geth/
@@ -50,5 +50,8 @@ RUN tar -zxvf geth.tar.gz -C /workspace/geth/ --strip-components=1
 RUN ls -la /workspace/ && ls -la /workspace/geth/
 RUN cp /workspace/geth/geth /usr/bin/geth
 
-
 ADD directory.tar.gz /workspace/ethereum/
+
+COPY ./start-geth.sh /ethereum/start-geth.sh
+
+CMD ./ethereum/start-geth.sh && while true; do sleep 2 >> 2>&1 ; done
