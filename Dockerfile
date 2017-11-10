@@ -52,6 +52,10 @@ RUN cp /workspace/geth/geth /usr/bin/geth
 
 ADD directory.tar.gz /workspace/ethereum/
 
-COPY ./start-geth.sh /ethereum/start-geth.sh
+COPY start-geth.sh /workspace/start-geth.sh
 
-CMD ./ethereum/start-geth.sh && while true; do sleep 2 >> 2>&1 ; done
+RUN echo "password" > /workspace/password.txt
+
+copy pycurlGetBlockNumber.py /workspace/pycurlGetBlockNumber.py
+
+copy networkGethClients.py /workspace/networkGethClients.py
