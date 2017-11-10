@@ -255,7 +255,7 @@ if __name__ == '__main__':
 
 
 #    results = getPeerCount(ip=sys.argv[1],port=sys.argv[2],verbose='True')
-#    results = getPeerCount(ip=sys.argv[1],port=sys.argv[2],verbose='True')
+    results = getPeerCount(ip=sys.argv[1],port=sys.argv[2],verbose='True')
     results = getBlockNumber(ip=sys.argv[1],port=sys.argv[2],verbose='True')
 
 
