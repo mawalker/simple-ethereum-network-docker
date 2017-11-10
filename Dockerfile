@@ -42,9 +42,13 @@ RUN apt-get install -y --no-install-recommends software-properties-common
 ##############################################################################
 RUN apt-get install -y zip unzip less wget curl
 
+RUN mkdir -p /workspace/ethereum/
 RUN mkdir -p /workspace/geth/ && cd /workspace/geth/
 RUN apt-get install -y python-pycurl
 RUN curl -o geth.tar.gz https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.7.2-1db4ecdc.tar.gz
 RUN tar -zxvf geth.tar.gz -C /workspace/geth/ --strip-components=1
 RUN ls -la /workspace/ && ls -la /workspace/geth/
 RUN cp /workspace/geth/geth /usr/bin/geth
+
+
+ADD directory.tar.gz /workspace/ethereum/

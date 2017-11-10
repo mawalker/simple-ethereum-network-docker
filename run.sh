@@ -18,6 +18,7 @@ log="log.txt"
 
 timestamp | tee -a $log # print timestamp to screen & log
 
+docker run -t -i righteouscoder/geth-simple-network
 #docker build -t righteouscoder/geth-simple-network . 2>&1 | tee -a $log
 
 timestamp | tee -a $log # print timestamp to screen & log
