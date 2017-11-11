@@ -247,16 +247,102 @@ def getHash(ip,port):
 
 if __name__ == '__main__':
 
-    contract = "6060604052341561000f57600080fd5b60405161050c38038061050c83398101604052808051820191905050336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060019080519060200190610081929190610088565b505061012d565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106100c957805160ff19168380011785556100f7565b828001600101855582156100f7579182015b828111156100f65782518255916020019190600101906100db565b5b5090506101049190610108565b5090565b61012a91905b8082111561012657600081600090555060010161010e565b5090565b90565b6103d08061013c6000396000f300606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b51461006757806342cbb15c1461007c578063a4136862146100a5578063cfae321714610102575b600080fd5b341561007257600080fd5b61007a610190565b005b341561008757600080fd5b61008f610221565b6040518082815260200191505060405180910390f35b34156100b057600080fd5b610100600480803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610229565b005b341561010d57600080fd5b610115610243565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561015557808201518184015260208101905061013a565b50505050905090810190601f1680156101825780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561021f576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b600043905090565b806001908051906020019061023f9291906102eb565b5050565b61024b61036b565b60018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102e15780601f106102b6576101008083540402835291602001916102e1565b820191906000526020600020905b8154815290600101906020018083116102c457829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061032c57805160ff191683800117855561035a565b8280016001018555821561035a579182015b8281111561035957825182559160200191906001019061033e565b5b509050610367919061037f565b5090565b602060405190810160405280600081525090565b6103a191905b8082111561039d576000816000905550600101610385565b5090565b905600a165627a7a72305820e7812a25721d9dac54df990f9c3a8c3dc30748387348e6b1e8ce1cec451aed130029"
+    #################################################
+    # Contract name
+    #################################################
+    # SimpleStorage
 
-    greetHash = "cfae3217";
-    setGreetingHash = "a4136862"
+    #################################################
+    # Contract
+    #################################################
+    # pragma solidity ^0.4.8;
+    # contract SimpleStorage {
+    #     uint storedData;
+    #     function set(uint x) public {
+    #         storedData = x;
+    #     }
+    #     function get() public constant returns (uint retVal) {
+    #         return storedData;
+    #     }
+    # }
+    #################################################
 
-    # get enode info from non-miner client
-    results = getEnodeInfo("127.0.0.1", "9000", verbose='True')
+    #################################################
+    # Meta-Data about contract
+    #################################################
+    # {"compiler":{"version":"0.4.18+commit.9cf6e910"},"language":"Solidity","output":{"abi":[{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}],"devdoc":{"methods":{}},"userdoc":{"methods":{}}},"settings":{"compilationTarget":{"browser/ballot.sol":"SimpleStorage"},"libraries":{},"optimizer":{"enabled":false,"runs":200},"remappings":[]},"sources":{"browser/ballot.sol":{"keccak256":"0xbfa1a74f0356c93ad686e709e09bbdf374a18cf24cc32bdf0bb352914c092a2c","urls":["bzzr://7159d4c5db004937669eae9635a772fd69657c123a4ab4113fbb3ba324300794"]}},"version":1}
 
-    # convert enode into fully appropriate string version
-    results = results.split("@")[0] + "@127.0.0.1:8001"
+    #################################################
+    # Interface ABI
+    #################################################
+    # [{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
 
-    # add the peer to the miner's client statically
-    results2 = addPeer("127.0.0.1", "11000", results)
+    #################################################
+    # Web3Deploy JS
+    #################################################
+    # var browser_ballot_sol_simplestorageContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]);
+    # var browser_ballot_sol_simplestorage = browser_ballot_sol_simplestorageContract.new(
+    #    {
+    #       from: web3.eth.accounts[0],
+    #       data: '0x6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029', 
+    #       gas: '4700000'
+    #    }, function (e, contract)
+    #    {
+    #       console.log(e, contract);
+    #       if (typeof contract.address !== 'undefined')
+    #       {
+    #          console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+    #       }
+    #    }
+    # )
+
+    #################################################
+    # Contract & RuntimeBytecode
+    #################################################
+    SimpleStorageContract = "6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
+    SimpleStorageRuntimeBytecode = "6060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
+
+    #################################################
+    # SimpleStorage Function Hashses
+    #################################################
+    # "6d4ce63c": "get()",
+    # "60fe47b1": "set(uint256)"
+    #################################################
+    SimpleStorageGetHash = "6d4ce63c"
+    SimpleStorageSetHash = "60fe47b1"
+
+    #################################################
+    # Logic to submit/operate/filter a contract
+    #################################################
+
+    # ipAddr = sys.argv[1]
+    # portAddr = sys.argv[2]
+
+    # Statically set for this example, would normally use Command Line Interface (CLI) args
+    ipAddr = "127.0.0.1"
+    portAddr = "8001"
+
+    # Submit the contract as a transaction.
+    transactionReceipt = deployContract(ip=sys.ipAddr,port=sys.portAddr,contractBytecode=contractBytecode,verbose='False')
+    print ("Smart Contract Submission TransactionReceipt: ")
+    pprint.pprint(transactionReceipt)
+
+    # Sleep for some time to allow mining of transaction's block to finish.
+    print ("Sleeping for "+str(sleepTime)+" seconds to allow for mining of transaction.")
+    time.sleep(sleepTime)
+
+    # get the address of the contract, after its transaction has been mined into a complete block.
+    contractAddress = getAddressOfTransaction(ip=sys.ipAddr,port=sys.portAddr,transactionReceipt='0x28488615f0a5f6a7a3631ed7bbdb37ec14c8f052d94fc0beb4ac4d711b326722',verbose='True')
+    pprint.pprint(contractAddress)
+    print ("Contract Address: " + contractAddress['contractAddress'])
+
+    # Call 'get()' in the smart contract.
+    transactionReceipt2 = callContractMethod(ip=sys.ipAddr,port=sys.portAddr,toAddress=contractAddress,dataString=SimpleStorageGetHash,gas="0x200000",account=None,verbose='True')
+
+    # Sleep for some time to allow mining of transaction's block to finish.
+    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
+    time.sleep(sleepTime)
+
+    # Check the Filter for any changes.
+    changeResults = getFilterChanges(ip=sys.ipAddr,port=sys.portAddr,filterID=newFilterID,verbose="True")
+    pprint.pprint(changeResults)
