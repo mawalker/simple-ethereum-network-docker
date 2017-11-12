@@ -248,10 +248,11 @@ def getHash(ip,port):
 if __name__ == '__main__':
 
     # get enode info from non-miner client
-    results = getEnodeInfo("127.0.0.1", "9000", verbose='True')
+    results = getEnodeInfo("127.0.0.1", "9000", verbose='False')
 
     # convert enode into fully appropriate string version
     results = results.split("@")[0] + "@127.0.0.1:8001"
 
     # add the peer to the miner's client statically
     results2 = addPeer("127.0.0.1", "11000", results)
+

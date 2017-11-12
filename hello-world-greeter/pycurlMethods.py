@@ -334,7 +334,7 @@ if __name__ == '__main__':
     portAddr = "9000"
 
     # Time to sleep after submitting a transaction to allow the block to be mined (public test network is 5~7+ minutes)
-    sleepTime = 60
+    sleepTime = 30 # seconds
 
     # Make a new filter (locally). Note: Filter doesn't yet have any info about contract so similar to "*" search.
     newFilterID = makeNewFilter(ip=ipAddr,port=portAddr,fromBlock="0x0",verbose='False')
