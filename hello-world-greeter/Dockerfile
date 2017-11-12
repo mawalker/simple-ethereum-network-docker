@@ -20,5 +20,7 @@ MAINTAINER Michael A. Walker "michael.a.walker.1@vanderbilt.edu"
 ##############################################################################
 # copy specific files for this example
 ##############################################################################
-COPY pycurlMethods.py /workspace/pycurlMethods.py
+COPY testProject.py /workspace/testProject.py
+COPY waitUntilReady.sh /workspace/waitUntilReady.sh
+COPY fullTest.sh /fullTest.sh
 
