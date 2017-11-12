@@ -31,13 +31,13 @@ Then run [ ./run.sh ] in this directory. This will launch an instance of the cus
 
 Now that you are in the custom docker image, run these commands to 
 
-1) start the geth clients 
+1) change directory to where the scripts are
 
-2) network them together 
+2) start the geth clients 
 
-3) wait until the network is ready 
+3) network them together 
 
-4) run the testProject python file
+4) wait until the network is ready and then run the testProject python file
 
 ```
 cd /workspace/
