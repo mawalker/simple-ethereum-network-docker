@@ -15,6 +15,10 @@ contract SimpleStorage {
 }
 ```
 
+https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.18+commit.9cf6e910.js
+
+Used remix editor to compile this contract. The following are the outputs it gives.
+
 -------
 
 ### META DATA
