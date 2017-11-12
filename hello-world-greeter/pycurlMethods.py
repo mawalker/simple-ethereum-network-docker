@@ -299,8 +299,8 @@ if __name__ == '__main__':
     #################################################
     # Contract & RuntimeBytecode
     #################################################
-    SimpleStorageContract = "6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
-    SimpleStorageRuntimeBytecode = "6060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
+    SimpleStorageContract = "0x6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
+    SimpleStorageRuntimeBytecode = "0x6060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058206569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad29390029"
 
     #################################################
     # SimpleStorage Function Hashses
@@ -308,8 +308,8 @@ if __name__ == '__main__':
     # "6d4ce63c": "get()",
     # "60fe47b1": "set(uint256)"
     #################################################
-    SimpleStorageGetHash = "6d4ce63c"
-    SimpleStorageSetHash = "60fe47b1"
+    SimpleStorageGetHash = "0x6d4ce63c"
+    SimpleStorageSetHash = "0x60fe47b1"
 
     #################################################
     # Logic to submit/operate/filter a contract
@@ -320,29 +320,41 @@ if __name__ == '__main__':
 
     # Statically set for this example, would normally use Command Line Interface (CLI) args
     ipAddr = "127.0.0.1"
-    portAddr = "8001"
+    portAddr = "9000"
+
+    sleepTime = 60
 
     # Submit the contract as a transaction.
-    transactionReceipt = deployContract(ip=sys.ipAddr,port=sys.portAddr,contractBytecode=contractBytecode,verbose='False')
+    contractTransactionReceipt = deployContract(ip=ipAddr,port=portAddr,contractBytecode=SimpleStorageContract,verbose='False')
     print ("Smart Contract Submission TransactionReceipt: ")
-    pprint.pprint(transactionReceipt)
-
-    # Sleep for some time to allow mining of transaction's block to finish.
-    print ("Sleeping for "+str(sleepTime)+" seconds to allow for mining of transaction.")
-    time.sleep(sleepTime)
-
-    # get the address of the contract, after its transaction has been mined into a complete block.
-    contractAddress = getAddressOfTransaction(ip=sys.ipAddr,port=sys.portAddr,transactionReceipt='0x28488615f0a5f6a7a3631ed7bbdb37ec14c8f052d94fc0beb4ac4d711b326722',verbose='True')
-    pprint.pprint(contractAddress)
-    print ("Contract Address: " + contractAddress['contractAddress'])
-
-    # Call 'get()' in the smart contract.
-    transactionReceipt2 = callContractMethod(ip=sys.ipAddr,port=sys.portAddr,toAddress=contractAddress,dataString=SimpleStorageGetHash,gas="0x200000",account=None,verbose='True')
+    pprint.pprint(contractTransactionReceipt)
 
     # Sleep for some time to allow mining of transaction's block to finish.
     print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
     time.sleep(sleepTime)
 
+    # get the address of the contract, after its transaction has been mined into a complete block.
+    contractAddress = getAddressOfTransaction(ip=ipAddr,port=portAddr,transactionReceipt=contractTransactionReceipt,verbose='False')
+#    pprint.pprint(contractAddress)
+    print ("Contract Address: " + contractAddress['contractAddress'])
+
+    # Call 'get()' in the smart contract.
+    transactionReceipt2 = callContractMethod(
+                                              ip = ipAddr,
+                                              port = portAddr,
+                                              toAddress = contractAddress,
+                                              dataString = SimpleStorageGetHash,
+                                              gas = "0x200000",
+                                              account = None,
+                                              verbose = 'True'
+                                            )
+
+    # Sleep for some time to allow mining of transaction's block to finish.
+#    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
+#    time.sleep(sleepTime)
+
     # Check the Filter for any changes.
-    changeResults = getFilterChanges(ip=sys.ipAddr,port=sys.portAddr,filterID=newFilterID,verbose="True")
-    pprint.pprint(changeResults)
+#    changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
+#    pprint.pprint(changeResults)
+
+
