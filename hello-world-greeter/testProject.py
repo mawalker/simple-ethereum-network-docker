@@ -356,7 +356,7 @@ if __name__ == '__main__':
     portAddr = "9000"
 
     # Time to sleep after submitting a transaction to allow the block to be mined (public test network is 5~7+ minutes)
-    sleepTime = 30 # seconds
+    sleepTime = 60 # seconds
 
     # Make a new filter (locally). Note: Filter doesn't yet have any info about contract so similar to "*" search.
 #    newFilterID = makeNewFilter(ip=ipAddr,port=portAddr,fromBlock="0x0",verbose='False')
@@ -388,7 +388,7 @@ if __name__ == '__main__':
     print ("Contract Address: " + contractAddress)
 
 
-    # Call 'get()' in the smart contract.
+    # Call 'get()' in the smart contract locally and get the results instantly.
     methodLocalCallResuls = ethCall (
                                              ip = ipAddr,
                                              port = portAddr,
@@ -396,14 +396,14 @@ if __name__ == '__main__':
                                              dataString = SimpleStorageGetHash,
                                              gas = "0x200000",
                                              account = None,
-                                             verbose = 'True'
+                                             verbose = 'False'
                                            )
 
     print ("Method Local Call Results:")
     pprint.pprint(methodLocalCallResuls)
 
 
-    # Call 'get()' in the smart contract.
+    # Call 'get()' in the smart contract on the blockchian, no direct results returned, have to check manually later.
     MethodCallTransactionReceipt = callContractMethod (
                                               ip = ipAddr,
                                               port = portAddr,
@@ -411,7 +411,7 @@ if __name__ == '__main__':
                                               dataString = SimpleStorageSet2,
                                               gas = "0x200000",
                                               account = None,
-                                              verbose = 'True'
+                                              verbose = 'False'
                                             )
 
     # Sleep for some time to allow mining of transaction's block to finish.
@@ -425,7 +425,7 @@ if __name__ == '__main__':
                                                  ip = ipAddr,
                                                  port = portAddr,
                                                  transactionReceipt = MethodCallTransactionReceipt,
-                                                 verbose = 'True'
+                                                 verbose = 'False'
                                                )
     methodCallBlockNumber = methodCallTransaction['blockNumber']
 
