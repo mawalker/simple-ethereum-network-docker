@@ -1,8 +1,20 @@
-# How to use this project
+# Ethereum Simple Storage Example
+
+This project is publicly available at: https://hub.docker.com/r/righteouscoder/ethereum-simple-storage-example/
+
+------
+
+## How to build this project locally
+
+### Skip this step if you want to just download the publicly available image.
 
 First, Build the geth-simple-network image by running [ ./build.sh ] in that directory.
 
 Then run [ ./build.sh ] in this directory.
+
+--------
+
+## How to use this project
 
 Then run [ ./run.sh ] in this directory. This will launch an instance of the custom docker image of this project.
 
@@ -22,6 +34,7 @@ cd /workspace/
 ./networkGethClients.py 
 ./waitUntilReady.sh && ./testProject.py
 ```
+
 -------
 
 ## Here is the sample contract for this example.
