@@ -1,26 +1,3 @@
-Here is the sample contract for this example.
-
--------
-
-```
-pragma solidity ^0.4.8;
-contract SimpleStorage {
-    uint storedData;
-    function set(uint x) public {
-        storedData = x;
-    }
-    function get() public constant returns (uint retVal) {
-        return storedData;
-    }
-}
-```
-
-https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.18+commit.9cf6e910.js
-
-Used remix editor to compile this contract. Below are the outputs it gives.
-
--------
-
 # How to use this project
 
 First, Build the geth-simple-network image by running [ ./build.sh ] in that directory.
@@ -45,8 +22,26 @@ cd /workspace/
 ./networkGethClients.py 
 ./waitUntilReady.sh && ./testProject.py
 ```
+-------
 
+## Here is the sample contract for this example.
 
+```
+pragma solidity ^0.4.8;
+contract SimpleStorage {
+    uint storedData;
+    function set(uint x) public {
+        storedData = x;
+    }
+    function get() public constant returns (uint retVal) {
+        return storedData;
+    }
+}
+```
+
+https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.18+commit.9cf6e910.js
+
+Used remix editor to compile this contract. Below are the outputs it gives.
 
 -------
 
