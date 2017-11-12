@@ -2,6 +2,7 @@ Here is the sample contract for this example.
 
 -------
 
+```
 pragma solidity ^0.4.8;
 contract SimpleStorage {
     uint storedData;
@@ -12,6 +13,7 @@ contract SimpleStorage {
         return storedData;
     }
 }
+```
 
 -------
 
@@ -28,7 +30,7 @@ contract SimpleStorage {
 [{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
 
 ### WEB3DEPLOY
-
+```
 var browser_ballot_sol_simplestorageContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]);
 var browser_ballot_sol_simplestorage = browser_ballot_sol_simplestorageContract.new(
    {
@@ -41,7 +43,8 @@ var browser_ballot_sol_simplestorage = browser_ballot_sol_simplestorageContract.
          console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
     }
  })
- 
+```
+
 ### METADATAHASH
  
 6569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad2939
@@ -51,14 +54,17 @@ var browser_ballot_sol_simplestorage = browser_ballot_sol_simplestorageContract.
 bzzr://6569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad2939
  
 ### FUNCTIONHASHES
- 
+
+```
 {
    "6d4ce63c": "get()",
    "60fe47b1": "set(uint256)"
 }
- 
+```
+
 ### GASESTIMATES
 
+```
 {
     "Creation": "88 + 42200\n",
     "External": {
@@ -67,6 +73,7 @@ bzzr://6569c46c09feaa724076844fe37ec8fd0c9086ae2e72f1c0e93ed5852bad2939
     },
     "Internal": {}
 }
+```
 
 ### RUNTIME BYTECODE
 
