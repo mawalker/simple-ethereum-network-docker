@@ -59,3 +59,4 @@ RUN echo "password" > /workspace/password.txt
 copy pycurlGetBlockNumber.py /workspace/pycurlGetBlockNumber.py
 
 copy networkGethClients.py /workspace/networkGethClients.py
+COPY waitUntilReady.sh /workspace/waitUntilReady.sh
