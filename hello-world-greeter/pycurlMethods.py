@@ -166,9 +166,17 @@ def callContractMethod(ip,port,toAddress,dataString,gas="0x200000",account=None,
     # balance = getBalance(ip,port,results1[0])
     # balanceNeeded = .... calculation of contract size + gas offering, etc.
     # print ( "balance is not enough, ohly has: " + balance + " needs: " + balanceNeeded)
-    results = rpcCommand(ip=ip,port=port,method="eth_sendTransaction",params=[{'from':account, 'to':toAddress, 'data': dataString, 'gas': gas}])
+    params=[{'from':account, 'to':toAddress, 'data': dataString, 'gas': gas}]
     if verbose == 'True':
-        print ("Transaction results:" + results)
+        print ("Call Contract Method Transaction Parameters:")
+        pprint.pprint(params)
+    results = rpcCommand(ip=ip,port=port,method="eth_sendTransaction",params=params)
+    if verbose == 'True':
+        if isinstance(results,dict):
+            print ("Transaction results:")
+            pprint.pprint(results)
+        else:
+            print ("Transaction results:" + results)
     return results
 
 def getFilterChanges(ip,port,filterID,verbose=False):
@@ -311,6 +319,9 @@ if __name__ == '__main__':
     SimpleStorageGetHash = "0x6d4ce63c"
     SimpleStorageSetHash = "0x60fe47b1"
 
+    # input to set value to '2'
+    SimpleStorageSet2 = "0x60fe47b10000000000000000000000000000000000000000000000000000000000000002"
+
     #################################################
     # Logic to submit/operate/filter a contract
     #################################################
@@ -337,24 +348,25 @@ if __name__ == '__main__':
     contractAddress = getAddressOfTransaction(ip=ipAddr,port=portAddr,transactionReceipt=contractTransactionReceipt,verbose='False')
 #    pprint.pprint(contractAddress)
     print ("Contract Address: " + contractAddress['contractAddress'])
+    contractAddress = contractAddress['contractAddress']
 
     # Call 'get()' in the smart contract.
     transactionReceipt2 = callContractMethod(
                                               ip = ipAddr,
                                               port = portAddr,
                                               toAddress = contractAddress,
-                                              dataString = SimpleStorageGetHash,
+                                              dataString = SimpleStorageSet2,
                                               gas = "0x200000",
                                               account = None,
-                                              verbose = 'True'
+                                              verbose = 'False'
                                             )
 
     # Sleep for some time to allow mining of transaction's block to finish.
-#    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
-#    time.sleep(sleepTime)
+    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
+    time.sleep(sleepTime)
 
     # Check the Filter for any changes.
-#    changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
-#    pprint.pprint(changeResults)
+    changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
+    pprint.pprint(changeResults)
 
 
