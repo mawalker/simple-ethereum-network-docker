@@ -1,7 +1,8 @@
 #!/bin/bash
 ###############################################################################
 #
-# This Scipt builds the Dockerfile for 'righteouscoder/ethereum-greeter-example'
+# This Scipt builds the Dockerfile for
+#                              'righteouscoder/ethereum-simple-storage-example'
 #
 # It logs the start and stop time and stdout & stderr into log.txt
 #
@@ -21,7 +22,7 @@ log="log.txt"
 
 timestamp | tee -a $log # print timestamp to screen & log
 
-docker build -t righteouscoder/ethereum-greeter-example . 2>&1 | tee -a $log
+docker build -t righteouscoder/ethereum-simple-storage-example . 2>&1 | tee -a $log
 
 timestamp | tee -a $log # print timestamp to screen & log
 

@@ -10,7 +10,7 @@
 ##############################################################################
 # Define the parent image
 ##############################################################################
-FROM righteouscoder/geth-simple-network
+FROM righteouscoder/ethereum-simple-storage-example
 
 ##############################################################################
 # Define the MAINTAINER
