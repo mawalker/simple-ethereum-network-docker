@@ -9,7 +9,9 @@
 #
 ###############################################################################
 
-echo "\n\n  Waiting for Network Miner to start mining.  \n\n"
+echo ""
+echo "  Waiting for Network Miner to start mining."
+echo ""
 
 results=$(./pycurlGetBlockNumber.py 127.0.0.1 9000 | grep "Current block number is:" | awk {'print $5'})
 
@@ -18,4 +20,5 @@ while [ "$results" = "0x0" ]; do
    results=$(./pycurlGetBlockNumber.py 127.0.0.1 9000 | grep "Current block number is:" | awk {'print $5'})
 done
 
-echo "\nMining has started. Network is ready to use.\n"
+echo "  Mining has started. Network is ready to use."
+echo ""

@@ -17,7 +17,36 @@ contract SimpleStorage {
 
 https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.18+commit.9cf6e910.js
 
-Used remix editor to compile this contract. The following are the outputs it gives.
+Used remix editor to compile this contract. Below are the outputs it gives.
+
+-------
+
+# How to use this project
+
+First, Build the geth-simple-network image by running [ ./build.sh ] in that directory.
+
+Then run [ ./build.sh ] in this directory.
+
+Then run [ ./run.sh ] in this directory. This will launch an instance of the custom docker image of this project.
+
+Now that you are in the custom docker image, run these commands to 
+
+1) start the geth clients 
+
+2) network them together 
+
+3) wait until the network is ready 
+
+4) run the testProject python file
+
+```
+cd /workspace/
+./start-geth.sh 
+./networkGethClients.py 
+./waitUntilReady.sh && ./testProject.py
+```
+
+
 
 -------
 
