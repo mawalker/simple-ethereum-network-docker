@@ -1,6 +1,30 @@
-Here is the sample contract for this example.
+# How to use this project
 
+First, Build the geth-simple-network image by running [ ./build.sh ] in that directory.
+
+Then run [ ./build.sh ] in this directory.
+
+Then run [ ./run.sh ] in this directory. This will launch an instance of the custom docker image of this project.
+
+Now that you are in the custom docker image, run these commands to 
+
+1) change directory to where the scripts are
+
+2) start the geth clients 
+
+3) network them together 
+
+4) wait until the network is ready and then run the testProject python file
+
+```
+cd /workspace/
+./start-geth.sh 
+./networkGethClients.py 
+./waitUntilReady.sh && ./testProject.py
+```
 -------
+
+## Here is the sample contract for this example.
 
 ```
 pragma solidity ^0.4.8;
@@ -18,35 +42,6 @@ contract SimpleStorage {
 https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.18+commit.9cf6e910.js
 
 Used remix editor to compile this contract. Below are the outputs it gives.
-
--------
-
-# How to use this project
-
-First, Build the geth-simple-network image by running [ ./build.sh ] in that directory.
-
-Then run [ ./build.sh ] in this directory.
-
-Then run [ ./run.sh ] in this directory. This will launch an instance of the custom docker image of this project.
-
-Now that you are in the custom docker image, run these commands to 
-
-1) start the geth clients 
-
-2) network them together 
-
-3) wait until the network is ready 
-
-4) run the testProject python file
-
-```
-cd /workspace/
-./start-geth.sh 
-./networkGethClients.py 
-./waitUntilReady.sh && ./testProject.py
-```
-
-
 
 -------
 
