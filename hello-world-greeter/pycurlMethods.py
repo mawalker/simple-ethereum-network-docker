@@ -329,11 +329,16 @@ if __name__ == '__main__':
     # ipAddr = sys.argv[1]
     # portAddr = sys.argv[2]
 
-    # Statically set for this example, would normally use Command Line Interface (CLI) args
+    # Statically set for this example, would normally use Command Line Interface (CLI) args above
     ipAddr = "127.0.0.1"
     portAddr = "9000"
 
+    # Time to sleep after submitting a transaction to allow the block to be mined (public test network is 5~7+ minutes)
     sleepTime = 60
+
+    # Make a new filter (locally). Note: Filter doesn't yet have any info about contract so similar to "*" search.
+    newFilterID = makeNewFilter(ip=ipAddr,port=portAddr,fromBlock="0x0",verbose='False')
+    print ("New Filter ID: " + str(newFilterID))
 
     # Submit the contract as a transaction.
     contractTransactionReceipt = deployContract(ip=ipAddr,port=portAddr,contractBytecode=SimpleStorageContract,verbose='False')
@@ -341,14 +346,18 @@ if __name__ == '__main__':
     pprint.pprint(contractTransactionReceipt)
 
     # Sleep for some time to allow mining of transaction's block to finish.
-    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
+    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction." + "\n")
     time.sleep(sleepTime)
 
     # get the address of the contract, after its transaction has been mined into a complete block.
-    contractAddress = getAddressOfTransaction(ip=ipAddr,port=portAddr,transactionReceipt=contractTransactionReceipt,verbose='False')
-#    pprint.pprint(contractAddress)
-    print ("Contract Address: " + contractAddress['contractAddress'])
-    contractAddress = contractAddress['contractAddress']
+    contractAddress = getAddressOfTransaction(
+                                               ip = ipAddr,
+                                               port = portAddr,
+                                               transactionReceipt = contractTransactionReceipt,
+                                               verbose = 'False'
+                                             ) ['contractAddress']
+
+    print ("Contract Address: " + contractAddress)
 
     # Call 'get()' in the smart contract.
     transactionReceipt2 = callContractMethod(
@@ -362,8 +371,18 @@ if __name__ == '__main__':
                                             )
 
     # Sleep for some time to allow mining of transaction's block to finish.
-    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction.")
+    print ("Sleeping for " + str(sleepTime) + " seconds to allow for mining of transaction." + "\n")
     time.sleep(sleepTime)
+
+    # get the address of the contract, after its transaction has been mined into a complete block.
+    methodCallAddress = getAddressOfTransaction(
+                                                 ip = ipAddr,
+                                                 port = portAddr,
+                                                 transactionReceipt = contractTransactionReceipt,
+                                                 verbose = 'False'
+                                               ) ['contractAddress']
+
+    print ("MethodCall Address: " + methodCallAddress + "\n")
 
     # Check the Filter for any changes.
     changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
