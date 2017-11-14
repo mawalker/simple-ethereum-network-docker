@@ -21,5 +21,3 @@ MAINTAINER Michael A. Walker "michael.a.walker.1@vanderbilt.edu"
 # copy specific files for this example
 ##############################################################################
 COPY testProject.py /workspace/testProject.py
-COPY fullTest.sh /fullTest.sh
-
