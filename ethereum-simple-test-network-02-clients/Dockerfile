@@ -40,7 +40,7 @@ RUN apt-get install -y --no-install-recommends software-properties-common
 # Install some commons software to help with scripts, etc.
 # These are all likely to be very small and helpful
 ##############################################################################
-RUN apt-get install -y zip unzip less wget curl dtach nano vim
+RUN apt-get install -y zip unzip less wget curl dtach nano vim tmux
 
 RUN mkdir -p /workspace/ethereum/
 RUN mkdir -p /workspace/geth/ && cd /workspace/geth/

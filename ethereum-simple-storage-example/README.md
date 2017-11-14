@@ -35,6 +35,12 @@ cd /workspace/
 ./waitUntilReady.sh && ./testProject.py
 ```
 
+# The following two sets of APIs are the APIs available to you via JSON-RPC:
+
+https://github.com/ethereum/wiki/wiki/JSON-RPC
+
+https://github.com/ethereum/go-ethereum/wiki/Management-APIs
+
 -------
 
 ## Here is the sample contract for this example.

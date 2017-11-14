@@ -232,6 +232,44 @@ def ethCall(ip,port,toAddress,dataString,gas="0x200000",account=None,verbose=Fal
             print ("Transaction results:" + results)
     return results
 
+def getSimpleStorageAt(ip,port,dataAddress,position,tag="latest",verbose='False'):
+    # get value at specified storage.
+
+    params=[{ 'fromBlock':fromBlock, 'data':dataAddress, 'quantity':position }]
+
+    if verbose == 'True':
+        print ("eth_getstorageAt Params:")
+        pprint.pprint(params)
+
+    results = rpcCommand("eth_getStorageAt", params=params, ip=ip, port=port)
+
+    if verbose == 'True':
+        if isinstance(results,dict):
+            print ("getSimpleStorageAt results:")
+            pprint.pprint(results)
+        else:
+            print ("getSimpleStorageAt results:" + results)
+    return results
+
+def getSimpleStorageAt(ip,port,dataAddress,position,tag="latest",verbose='False'):
+    # get value at specified storage.
+    params=[ dataAddress, position, tag ]
+
+    if verbose == 'True':
+        print ("eth_getstorageAt Params:")
+        pprint.pprint(params)
+
+    results = rpcCommand("eth_getStorageAt", params=params, ip=ip, port=port)
+
+    if verbose == 'True':
+        if isinstance(results,dict):
+            print ("getSimpleStorageAt results:")
+            pprint.pprint(results)
+        else:
+            print ("getSimpleStorageAt results:" + results)
+    return results
+
+
 ##############################################################################
 # Experimental methods, not guarenteed to work!!!!!!
 ##############################################################################
@@ -359,8 +397,9 @@ if __name__ == '__main__':
     sleepTime = 60 # seconds
 
     # Make a new filter (locally). Note: Filter doesn't yet have any info about contract so similar to "*" search.
-#    newFilterID = makeNewFilter(ip=ipAddr,port=portAddr,fromBlock="0x0",verbose='False')
-#    print ("New Filter ID: " + str(newFilterID))
+    # Filter doesn't work, feel free to try to get it to work if you want.
+    # newFilterID = makeNewFilter(ip=ipAddr,port=portAddr,fromBlock="0x1",verbose='False')
+    # print ("New Filter ID: " + str(newFilterID))
 
     # Submit the contract as a transaction.
     contractTransactionReceipt = deployContract (
@@ -399,7 +438,7 @@ if __name__ == '__main__':
                                              verbose = 'False'
                                            )
 
-    print ("Method Local Call Results:")
+    print ("Method Local Call Results: ")
     pprint.pprint(methodLocalCallResuls)
 
 
@@ -431,7 +470,24 @@ if __name__ == '__main__':
 
     print ("MethodCall Transaction BlockNumber: " + methodCallBlockNumber + "\n")
 
+    # Read the geth client's local blockchain for the value of a contract's storage
+    # NOTE: This works for scalar variables, variables inside data structs are more complext to access.
+    dataValue = getSimpleStorageAt (
+                                   ip = ipAddr,
+                                   port = portAddr,
+                                   dataAddress = contractAddress,
+                                   position = '0x0',
+                                   tag = 'latest',
+                                   verbose = 'True'
+                                 )
+
+    blockNumber = getBlockNumber(ipAddr,portAddr)
+
+    # Print out the value of the data.
+    print ("At Block Number: " + blockNumber + ", value of contract's first variable: " + dataValue )
+
     # Check the Filter for any changes.
-#    changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
-#    pprint.pprint(changeResults)
+    # changeResults = getFilterChanges(ip=ipAddr,port=portAddr,filterID=newFilterID,verbose="True")
+    # print ("Filter Changes: ")
+    # pprint.pprint(changeResults)
 
