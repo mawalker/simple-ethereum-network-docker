@@ -35,7 +35,33 @@ cd /workspace/
 ./waitUntilReady.sh && ./testProject.py
 ```
 
-# The following two sets of APIs are the APIs available to you via JSON-RPC:
+### Here is a sample output from the above 4th command
+
+```
+root@9d9231fed368:/workspace# ./waitUntilReady.sh && ./testProject.py 
+
+  Waiting for Network Miner to start mining.
+
+  Mining has started. Network is ready to use.
+
+Smart Contract Submission TransactionReceipt: 
+'0x20d5a0fbe5d28446b2d12460440278eedd5fe65c8060fd77634674bd9069efd5'
+Sleeping for 60 seconds to allow for mining of transaction.
+
+Contract Address: 0x9df96063817c1c47e3a0cc538e08fcb63c5b69fb
+Method Local Call Results: 
+'0x0000000000000000000000000000000000000000000000000000000000000000'
+Sleeping for 60 seconds to allow for mining of transaction.
+
+MethodCall Transaction BlockNumber: 0x39
+
+eth_getstorageAt Params:
+['0x9df96063817c1c47e3a0cc538e08fcb63c5b69fb', '0x0', 'latest']
+getSimpleStorageAt results:0x0000000000000000000000000000000000000000000000000000000000000002
+At Block Number: 0x51, value of contract's first variable: 0x0000000000000000000000000000000000000000000000000000000000000002
+```
+
+## The following two sets of APIs are the APIs available to you via JSON-RPC:
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC
 
