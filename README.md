@@ -2,7 +2,8 @@
 
 ### @Author Michael A. Walker
 
-This git repository stores multiple docker image repositories in subfolders.
+#### This git repository stores multiple docker image repositories in subfolders. 
+These instructions are universal for every image container here. Enter subdirectories for more specific instructions.
 
 ### How to build the images from the git repository:
 #### Only required if you want to build locally and not download the images from Docker Hub.
