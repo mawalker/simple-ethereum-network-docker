@@ -1,3 +1,13 @@
+
+# Prereqs
+
+- A linux machine. Ideally you can use the virtual box image
+- sudo apt-get install docker.io
+- sudo service start docker
+
+
+You might need root privileges when running the build and run.sh scripts
+
 # Ethereum Simple Storage Example
 
 This project is publicly available at: https://hub.docker.com/r/righteouscoder/ethereum-simple-storage-example/
